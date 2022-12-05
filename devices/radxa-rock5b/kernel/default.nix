@@ -8,7 +8,7 @@ let
     versions
   ;
 
-  kernelVersion = "5.10.66";
+  kernelVersion = "5.10.110";
   vendorVersion = "";
 in
 buildLinux (args // rec {
@@ -49,6 +49,11 @@ buildLinux (args // rec {
     GS_MMA7660 = no;
     GS_MMA8452 = no;
 
+    SUNXI_CCU = no;
+    DRM_SUN41 = no;
+    DRM_ATMEL_HLCDC = no;
+    RK630_PHY = no;
+
     # This is not a good console...
     # FIQ_DEBUGGER = no;
     # TODO: Fix 8250 console not binding as a console
@@ -65,8 +70,8 @@ buildLinux (args // rec {
   src = fetchFromGitHub {
     owner = "radxa";
     repo = "kernel"; # stable-5.10-rock5
-    rev = "1d6f7d7596b0cca773446bb361a00a0dcf8f2135";
-    hash = "sha256-65GkjG9avOHrbsUpf3+II93SCY2jul7NVGHMakJ3R6Y=";
+    rev = "edd0059b3923ee11f18d66f14a60496db887efc4";
+    hash = "sha256-/QC+ptYMnJ8ti9BVLSiMqL0FUHwRGSHz0mJVpV6MHL4=";
   };
-  #src = builtins.fetchGit /Users/samuel/tmp/linux/radxa-rock5-bsp;
+  # src = /home/ccr/projects/kernel;
 } // (args.argsOverride or { }))
